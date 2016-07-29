@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="431.568" Width="722.987">
+    <Window.Resources>
+        <local:MainWindowViewModel x:Key="vm" />
+
+        <DataTemplate x:Key="listBoxItemTemplate1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextAlignment="Left" Text="{Binding Name}" Padding="3, 0" />
+                <TextBlock TextAlignment="Right" Text="{Binding Balance}" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" ItemsSource="{Binding Accounts, Source={StaticResource vm}}" ItemTemplate="{StaticResource listBoxItemTemplate1}"></ListBox>
+        <DataGrid Grid.Column="1"></DataGrid>
     </Grid>
 </Window>
